@@ -19,12 +19,15 @@ fn main() {
             }
             Some(Command::Remove { name, department }) => match employees.get_mut(&department) {
                 Some(names) => {
-                    for i in 0..names.len() {
-                        if names[i] == name {
-                            names.swap_remove(i);
-                            break; // How could I print a statement if no employees were found???
+                    match names.iter().position(|x| *x == *name) {
+                        Some(x) => {
+                            names.remove(x);
                         }
-                    }
+                        None => println!(
+                            "No employee with name '{}' found in department '{}'",
+                            name, department
+                        ),
+                    };
                 }
                 None => println!("No department found with this name."),
             },
