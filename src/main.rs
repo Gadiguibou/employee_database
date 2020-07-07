@@ -16,7 +16,7 @@ fn main() {
         match Command::from_input(input) {
             Some(Command::Add { name, department }) => employees
                 .entry(department)
-                .or_insert_with(|| {vec![]})
+                .or_default()
                 .push(name),
             Some(Command::List(department)) => println!("{:?}", employees.entry(department)),
             Some(Command::ListAll) => {
