@@ -4,6 +4,8 @@ use std::io;
 fn main() {
     let mut employees: HashMap<String, Vec<String>> = HashMap::new();
 
+    println!("\n---------------");
+
     println!("\nWelcome to the employee database!\n");
 
     println!("Type 'Add <name> to <department>' to add an employee.");
@@ -64,7 +66,7 @@ fn main() {
                     println!("Employees in department '{}':", department);
                     names.sort();
                     for name in names {
-                        println!("- {}", name);
+                        println!(" - {}", name);
                     }
                     println!("---------------");
                 }
@@ -76,6 +78,7 @@ fn main() {
     }
 
     println!("Exiting program, all data is now cleared.");
+    println!("---------------");
 }
 
 enum Command {
