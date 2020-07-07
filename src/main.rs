@@ -31,6 +31,10 @@ fn main() {
                 }
                 None => println!("No department found with this name."),
             },
+            Some(Command::RemoveDept(department)) => match employees.remove(&department) {
+                Some(_) => println!("Removed department '{}' and all its employees", department),
+                None => println!("No department found with this name"),
+            }
             Some(Command::List(department)) => match employees.get_mut(&department) {
                 Some(employees) => {
                     println!("---------------");
@@ -68,8 +72,9 @@ fn main() {
 enum Command {
     Add { name: String, department: String },
     Remove { name: String, department: String },
-    List(String),
+    RemoveDept(String),
     ListAll,
+    List(String),
     Quit,
 }
 
@@ -86,6 +91,7 @@ impl Command {
                 name: name.to_string(),
                 department: department.to_string(),
             }),
+            ["Remove", "department", department] => Some(Command::RemoveDept(department.to_string())),
             ["List", "all"] => Some(Command::ListAll),
             ["List", department] => Some(Command::List(department.to_string())),
             ["Quit"] => Some(Command::Quit),
