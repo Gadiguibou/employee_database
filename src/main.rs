@@ -31,7 +31,18 @@ fn main() {
                 }
                 None => println!("No department found with this name."),
             },
-            Some(Command::List(department)) => println!("{:?}", employees.entry(department)),
+            Some(Command::List(department)) => match employees.get_mut(&department) {
+                Some(employees) => {
+                    println!("---------------");
+                    println!("Employees in department '{}':", department);
+                    employees.sort();
+                    for name in employees {
+                        println!("- {}", name);
+                    }
+                    println!("---------------");
+                }
+                None => println!("No department found with name '{}'", department),
+            },
             Some(Command::ListAll) => {
                 for department in &employees {
                     println!("{:?}", department);
