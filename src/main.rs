@@ -4,6 +4,15 @@ use std::io;
 fn main() {
     let mut employees: HashMap<String, Vec<String>> = HashMap::new();
 
+    println!("\nWelcome to the employee database!\n");
+
+    println!("Type 'Add <name> to <department>' to add an employee.");
+    println!("Type 'Remove <name> from <department>' to remove an employee.");
+    println!("Type 'Remove <department>' to remove a department with all its employees.");
+    println!("Type 'List <department>' to list all employees in the department.");
+    println!("Type 'List all' to list all employees in the database.");
+    println!("Type 'Quit' to quit.\n");
+
     loop {
         let mut input = String::new();
 
