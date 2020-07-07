@@ -44,9 +44,18 @@ fn main() {
                 None => println!("No department found with name '{}'", department),
             },
             Some(Command::ListAll) => {
-                for department in &employees {
-                    println!("{:?}", department);
+                println!("~~~~~~~~~~~~~~~");
+                println!("ALL EMPLOYEES IN DATABASE:");
+                println!("---------------");
+                for (department, names) in &mut employees {
+                    println!("Employees in department '{}':", department);
+                    names.sort();
+                    for name in names {
+                        println!("- {}", name);
+                    }
+                    println!("---------------");
                 }
+                println!("~~~~~~~~~~~~~~~");
             }
             Some(Command::Quit) => break,
             None => println!("No command found with this name"),
